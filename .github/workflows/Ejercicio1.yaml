@@ -1,0 +1,23 @@
+name: Ejemplo de Variables Globales
+
+on:
+  workflow_dispatch:
+
+env:
+  GLOBAL_USER: "semaca"
+  MENSAJE_GLOBAL: "CR7 lover"
+
+jobs:
+  primer_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Leer variables en el Job 1
+        run: |
+          echo "Mi usuario favorito es: $GLOBAL_USER"
+          echo "Mensaje: $MENSAJE_GLOBAL"
+
+  segundo_job:
+    runs-on: ubuntu-latest
+    steps:             
+      - name: Leer variables usando contexto env de GitHub
+        run: echo "Has iniciado sesión de GitHub -> ${{ env.GLOBAL_USER }}"
